@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yiran.system.mapper.MiniProgrameUserMapper">
+    
+    <resultMap type="MiniProgrameUser" id="MiniProgrameUserResult">
+        <result property="openId"    column="open_id"    />
+        <result property="skey"    column="skey"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="lastVisitTime"    column="last_visit_time"    />
+        <result property="sessionKey"    column="session_key"    />
+        <result property="city"    column="city"    />
+        <result property="province"    column="province"    />
+        <result property="country"    column="country"    />
+        <result property="avatarUrl"    column="avatar_url"    />
+        <result property="gender"    column="gender"    />
+        <result property="nickName"    column="nick_name"    />
+    </resultMap>
+	
+	<sql id="selectMiniProgrameUserVo">
+        select open_id, skey, create_time, last_visit_time, session_key, city, province, country, avatar_url, gender, nick_name from mini_programe_user
+    </sql>
+	
+    <select id="selectMiniProgrameUserList" parameterType="MiniProgrameUser" resultMap="MiniProgrameUserResult">
+        <include refid="selectMiniProgrameUserVo"/>
+        <where>  
+            <if test="openId != null  and openId != '' "> and open_id = #{openId}</if>
+             <if test="skey != null  and skey != '' "> and skey = #{skey}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="lastVisitTime != null "> and last_visit_time = #{lastVisitTime}</if>
+             <if test="sessionKey != null  and sessionKey != '' "> and session_key = #{sessionKey}</if>
+             <if test="city != null  and city != '' "> and city = #{city}</if>
+             <if test="province != null  and province != '' "> and province = #{province}</if>
+             <if test="country != null  and country != '' "> and country = #{country}</if>
+             <if test="avatarUrl != null  and avatarUrl != '' "> and avatar_url = #{avatarUrl}</if>
+             <if test="gender != null "> and gender = #{gender}</if>
+             <if test="nickName != null  and nickName != '' "> and nick_name = #{nickName}</if>
+         </where>
+    </select>
+    
+    <select id="selectMiniProgrameUserById" parameterType="String" resultMap="MiniProgrameUserResult">
+        <include refid="selectMiniProgrameUserVo"/>
+        where open_id = #{openId}
+    </select>
+        
+    <insert id="insertMiniProgrameUser" parameterType="MiniProgrameUser">
+        insert into mini_programe_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="openId != null  and openId != ''  ">open_id,</if>
+			<if test="skey != null  and skey != ''  ">skey,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="lastVisitTime != null  ">last_visit_time,</if>
+			<if test="sessionKey != null  and sessionKey != ''  ">session_key,</if>
+			<if test="city != null  and city != ''  ">city,</if>
+			<if test="province != null  and province != ''  ">province,</if>
+			<if test="country != null  and country != ''  ">country,</if>
+			<if test="avatarUrl != null  and avatarUrl != ''  ">avatar_url,</if>
+			<if test="gender != null  ">gender,</if>
+			<if test="nickName != null  and nickName != ''  ">nick_name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="openId != null  and openId != ''  ">#{openId},</if>
+			<if test="skey != null  and skey != ''  ">#{skey},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="lastVisitTime != null  ">#{lastVisitTime},</if>
+			<if test="sessionKey != null  and sessionKey != ''  ">#{sessionKey},</if>
+			<if test="city != null  and city != ''  ">#{city},</if>
+			<if test="province != null  and province != ''  ">#{province},</if>
+			<if test="country != null  and country != ''  ">#{country},</if>
+			<if test="avatarUrl != null  and avatarUrl != ''  ">#{avatarUrl},</if>
+			<if test="gender != null  ">#{gender},</if>
+			<if test="nickName != null  and nickName != ''  ">#{nickName},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMiniProgrameUser" parameterType="MiniProgrameUser">
+        update mini_programe_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="skey != null  and skey != ''  ">skey = #{skey},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="lastVisitTime != null  ">last_visit_time = #{lastVisitTime},</if>
+            <if test="sessionKey != null  and sessionKey != ''  ">session_key = #{sessionKey},</if>
+            <if test="city != null  and city != ''  ">city = #{city},</if>
+            <if test="province != null  and province != ''  ">province = #{province},</if>
+            <if test="country != null  and country != ''  ">country = #{country},</if>
+            <if test="avatarUrl != null  and avatarUrl != ''  ">avatar_url = #{avatarUrl},</if>
+            <if test="gender != null  ">gender = #{gender},</if>
+            <if test="nickName != null  and nickName != ''  ">nick_name = #{nickName},</if>
+        </trim>
+        where open_id = #{openId}
+    </update>
+
+	<delete id="deleteMiniProgrameUserById" parameterType="String">
+        delete from mini_programe_user where open_id = #{openId}
+    </delete>
+	
+    <delete id="deleteMiniProgrameUserByIds" parameterType="String">
+        delete from mini_programe_user where open_id in 
+        <foreach item="openId" collection="array" open="(" separator="," close=")">
+            #{openId}
+        </foreach>
+    </delete>
+    
+</mapper>
