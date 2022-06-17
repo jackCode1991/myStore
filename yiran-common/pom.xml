@@ -21,7 +21,7 @@
 		<jsoup.version>1.11.3</jsoup.version>
 		<poi.version>3.17</poi.version>
 		<cn.hutool>4.4.5</cn.hutool>
-		<fastjson.version>1.2.47</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<commons.httpclient.version>3.1</commons.httpclient.version>
 		<dom4j.version>1.6.1</dom4j.version>
     </properties>
