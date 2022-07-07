@@ -12,7 +12,7 @@
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <cxfVersion>2.3.4</cxfVersion>
+    <cxfVersion>2.6.11</cxfVersion>
   </properties>
   <dependencies>
     <dependency>
